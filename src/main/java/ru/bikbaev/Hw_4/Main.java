@@ -8,5 +8,7 @@ public class Main {
         account.writeOfMoney(200);
         account.writeOfMoney(-22);
         account.writeOfMoney(300);
+
+
     }
 }
