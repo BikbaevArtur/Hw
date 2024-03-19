@@ -10,22 +10,21 @@ public class Program {
     private static final char DOT_EMPTY = '*';
     private static final Scanner scanner = new Scanner(System.in);
     private static final Random random = new Random();
+    private static final int WIN_COUNT = 4; // Выигрышная комбинация
     private static char[][] field;
     private static int fieldSizeX;
     private static int fieldSizeY;
 
-    private static final int WIN_COUNT = 4; // Выигрышная комбинация
-
     /**
      * Инициализация объектов игры
      */
-    static void initialize(){
+    static void initialize() {
         fieldSizeX = 3;
         fieldSizeY = 3;
         field = new char[fieldSizeX][fieldSizeY];
 
-        for (int x = 0; x < fieldSizeX; x++){
-            for (int y = 0; y < fieldSizeY; y++){
+        for (int x = 0; x < fieldSizeX; x++) {
+            for (int y = 0; y < fieldSizeY; y++) {
                 field[x][y] = DOT_EMPTY;
             }
         }
@@ -34,22 +33,22 @@ public class Program {
     /**
      * Печать текущего состояния игрового поля
      */
-    static void printField(){
+    static void printField() {
         System.out.print("+");
-        for (int i = 0; i < fieldSizeX; i++){
+        for (int i = 0; i < fieldSizeX; i++) {
             System.out.print("-" + (i + 1));
         }
         System.out.println("-");
 
-        for (int x = 0; x < fieldSizeX; x++){
+        for (int x = 0; x < fieldSizeX; x++) {
             System.out.print(x + 1 + "|");
-            for (int y = 0; y < fieldSizeY; y++){
+            for (int y = 0; y < fieldSizeY; y++) {
                 System.out.print(field[x][y] + "|");
             }
             System.out.println();
         }
 
-        for (int i = 0; i < fieldSizeX * 2 + 2; i++){
+        for (int i = 0; i < fieldSizeX * 2 + 2; i++) {
             System.out.print("-");
         }
         System.out.println();
@@ -58,7 +57,7 @@ public class Program {
     /**
      * Ход игрока (человека)
      */
-    static void humanTurn(){
+    static void humanTurn() {
         int x;
         int y;
         do {
@@ -73,10 +72,10 @@ public class Program {
     /**
      * Ход игрока (компьютера)
      */
-    static void aiTurn(){
+    static void aiTurn() {
         int x;
         int y;
-        do{
+        do {
             x = random.nextInt(fieldSizeX);
             y = random.nextInt(fieldSizeY);
         }
@@ -86,31 +85,34 @@ public class Program {
 
     /**
      * Проверка, является ли ячейка игрового поля пустой
+     *
      * @param x координата
      * @param y координата
      * @return результат проверки
      */
-    static boolean isCellEmpty(int x, int y){
+    static boolean isCellEmpty(int x, int y) {
         return field[x][y] == DOT_EMPTY;
     }
 
     /**
      * Проверка валидности координат хода
+     *
      * @param x координата
      * @param y координата
      * @return результат проверки
      */
-    static boolean isCellValid(int x, int y){
+    static boolean isCellValid(int x, int y) {
         return x >= 0 && x < fieldSizeX && y >= 0 && y < fieldSizeY;
     }
 
     /**
      * Поверка на ничью (все ячейки игрового поля заполнены фишками человека или компьютера)
+     *
      * @return
      */
-    static boolean checkDraw(){
-        for (int x = 0; x < fieldSizeX; x++){
-            for (int y = 0; y < fieldSizeY; y++){
+    static boolean checkDraw() {
+        for (int x = 0; x < fieldSizeX; x++) {
+            for (int y = 0; y < fieldSizeY; y++) {
                 if (isCellEmpty(x, y)) return false;
             }
         }
@@ -120,13 +122,13 @@ public class Program {
     /**
      * TODO: Переработать в рамках домашней работы
      * Метод проверки победы
+     *
      * @param dot фишка игрока
      * @return результат проверки победы
      */
 
 
-
-    static boolean checkWin(char dot){
+    static boolean checkWin(char dot) {
         // Проверка по трем горизонталям
         if (field[0][0] == dot && field[0][1] == dot && field[0][2] == dot) return true;
         if (field[1][0] == dot && field[1][1] == dot && field[1][2] == dot) return true;
@@ -139,50 +141,48 @@ public class Program {
 
         // Проверка по двум диагоналям
         if (field[0][0] == dot && field[1][1] == dot && field[2][2] == dot) return true;
-        if (field[0][2] == dot && field[1][1] == dot && field[2][0] == dot) return true;
-
-        return false;
+        return field[0][2] == dot && field[1][1] == dot && field[2][0] == dot;
     }
 
-    static boolean checkWinV2(char dot){
-        for (int x = 0; x < fieldSizeX; x++){
-            for (int y = 0; y < fieldSizeY; y++){
+    static boolean checkWinV2(char dot) {
+        for (int x = 0; x < fieldSizeX; x++) {
+            for (int y = 0; y < fieldSizeY; y++) {
 
             }
         }
         return false;
     }
 
-    static boolean check1(int x, int y, char dot, int win){
+    static boolean check1(int x, int y, char dot, int win) {
         //if (field[x][y + 1] == dot && field[x][y + 2] == dot && field[x][y + 3] == dot)
         return false;
     }
 
-    static boolean check2(int x, int y, char dot, int win){
+    static boolean check2(int x, int y, char dot, int win) {
         return false;
     }
 
-    static boolean check3(int x, int y, char dot, int win){
+    static boolean check3(int x, int y, char dot, int win) {
         return false;
     }
 
-    static boolean check4(int x, int y, char dot, int win){
+    static boolean check4(int x, int y, char dot, int win) {
         return false;
     }
 
 
     /**
      * Проверка состояния игры
+     *
      * @param dot фишка игрока
-     * @param s победный слоган
+     * @param s   победный слоган
      * @return состояние игры
      */
-    static boolean checkState(char dot, String s){
-        if (checkWin(dot)){
+    static boolean checkState(char dot, String s) {
+        if (checkWin(dot)) {
             System.out.println(s);
             return true;
-        }
-        else if (checkDraw()){
+        } else if (checkDraw()) {
             System.out.println("Ничья!");
             return true;
         }
@@ -205,7 +205,7 @@ public class Program {
                     break;
             }
             System.out.print("Желаете сыграть еще раз? (Y - да): ");
-            if(!scanner.next().equalsIgnoreCase("Y"))
+            if (!scanner.next().equalsIgnoreCase("Y"))
                 break;
         }
     }

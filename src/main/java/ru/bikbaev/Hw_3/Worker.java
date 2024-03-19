@@ -1,8 +1,6 @@
 package ru.bikbaev.Hw_3;
 
-import java.math.BigDecimal;
-
-public class Worker extends Employee{
+public class Worker extends Employee {
     private final String firstName;
     private final String lastName;
     private double salary;

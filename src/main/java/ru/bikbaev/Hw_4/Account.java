@@ -1,8 +1,8 @@
 package ru.bikbaev.Hw_4;
 
 public class Account {
-    private final int id;
     private static int idCount = 1;
+    private final int id;
     private int balance;
 
 
@@ -43,18 +43,16 @@ public class Account {
     public void writeOfMoney(int money) {
         try {
             validate(money);
-            if(balance < money){
-                throw  new InsufficientFundsException();
+            if (balance < money) {
+                throw new InsufficientFundsException();
             }
             System.out.println("\n\u001b[32m" + "Списание с счета  " + money + " рублей" + "\u001b[0m");
             balance = balance - money;
             printBalance();
 
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("\n\u001B[31m" + "Сумма списание не может быть отрицательной" + "\u001B[0m");
-        }
-        catch (InsufficientFundsException e){
+        } catch (InsufficientFundsException e) {
             System.out.println("\n\u001B[31m" + "Не хватает денежных средств на счету" + "\u001B[0m");
             printBalance();
         }

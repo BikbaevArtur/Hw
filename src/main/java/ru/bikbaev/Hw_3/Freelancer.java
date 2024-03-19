@@ -1,8 +1,5 @@
 package ru.bikbaev.Hw_3;
 
-import java.math.BigDecimal;
-import java.sql.Struct;
-
 public class Freelancer extends Employee {
 
     final private String name;
@@ -17,7 +14,7 @@ public class Freelancer extends Employee {
 
     @Override
     public double averageSalary() {
-       return 20.8 * 8 * bid;
+        return 20.8 * 8 * bid;
     }
 
     public String getName() {
